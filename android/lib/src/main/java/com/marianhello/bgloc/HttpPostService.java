@@ -45,6 +45,10 @@ public class HttpPostService {
             if (os != null) {
                 os.flush();
                 os.close();
+
+                if (conn != null) {
+                    conn.disconnect();
+                }
             }
         }
 
