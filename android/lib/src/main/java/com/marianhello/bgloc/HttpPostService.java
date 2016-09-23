@@ -30,6 +30,7 @@ public class HttpPostService {
         conn.setFixedLengthStreamingMode(jsonString.length());
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
+        conn.setRequestProperty("Connection", "close");
         Iterator<Map.Entry<String, String>> it = headers.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, String> pair = it.next();
@@ -44,7 +45,6 @@ public class HttpPostService {
         } finally {
             if (os != null) {
                 os.flush();
-                os.close();
 
                 if (conn != null) {
                     conn.disconnect();
